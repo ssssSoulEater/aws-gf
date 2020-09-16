@@ -1,2 +1,3 @@
 c.py
 __pycache__
+*.pyc

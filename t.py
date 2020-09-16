@@ -12,12 +12,16 @@ resp = ec2.describe_instances(
         },
     ],
 )
+print(len(resp['Reservations']))
+for instance in resp['Reservations']:
+    for item in instance['Instances']:
+        print(item['InstanceId'])
+        response = ec2.terminate_instances(
+            InstanceIds=[
+                item['InstanceId'],
+            ],
+        )
+        print(response)
+
 # print(len(resp['Reservations'][0]['Instances']))
-for item in resp['Reservations'][0]['Instances']:
-    print(item['InstanceId'])
-    response = ec2.terminate_instances(
-        InstanceIds=[
-            item['InstanceId'],
-        ],
-    )
-    print(response)
+# 
